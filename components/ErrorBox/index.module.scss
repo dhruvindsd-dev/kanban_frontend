@@ -1,0 +1,9 @@
+@import "/styles/utilities/derived-variables.sass";
+
+.notification {
+    background-color: $danger-light;
+    color: $danger-dark;
+    padding: 1rem;
+    border-radius: $radius-large;
+    display: flex;
+}

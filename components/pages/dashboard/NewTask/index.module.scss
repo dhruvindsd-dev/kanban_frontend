@@ -1,0 +1,29 @@
+@import "/styles/utilities/derived-variables.sass";
+.overlay,
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.overlay {
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 98;
+}
+.wrapper {
+    width: 40vw;
+    z-index: 100;
+    background-color: $grey-lightest;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 5rem 1.5rem;
+    .delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        color: $grey;
+        cursor: pointer;
+    }
+}

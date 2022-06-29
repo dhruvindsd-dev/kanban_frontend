@@ -1,8 +1,19 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { configureStore } from "@reduxjs/toolkit";
+import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import authStore from "../store/reducer/auth";
+import "../styles/globals.scss";
+
+const store = configureStore({ reducer: { auth: authStore } });
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+	return (
+		<Provider store={store}>
+			<Component {...pageProps} />
+		</Provider>
+	);
 }
 
-export default MyApp
+export default MyApp;

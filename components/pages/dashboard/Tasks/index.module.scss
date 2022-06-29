@@ -1,0 +1,37 @@
+@import "/styles/utilities/derived-variables.sass";
+@import "/styles/elements/tag.sass";
+.item {
+    padding: 1rem;
+    background-color: $grey-lightest;
+    margin-bottom: 0.75rem;
+    border-radius: $radius-large;
+}
+
+.box_wrapper {
+    padding: 2vw;
+}
+.box {
+    padding: 3rem;
+    font-size: 1.5rem;
+    background-color: $grey-lightest;
+    color: $grey-dark;
+    text-align: center;
+    font-weight: $weight-bold;
+    border-radius: $radius-large;
+    &.danger {
+        background-color: $danger-light;
+        color: $danger-dark;
+    }
+    &.success {
+        background-color: $success-light;
+        color: $success-dark;
+    }
+}
+
+.tags {
+    margin-top: 1rem;
+}
+
+.tag {
+    @extend .is-grey;
+}

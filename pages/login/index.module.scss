@@ -1,0 +1,114 @@
+@import "/styles/utilities/initial-variables.sass";
+@import "/styles/utilities/mixins.sass";
+@import "/styles/elements/image.sass";
+@import "/styles/grid/columns.sass";
+$width: 500px;
+.wrapper {
+    height: 100vh;
+    background-color: #55008e;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%2355008E' cx='50' cy='0' r='50'/%3E%3Cg fill='%235c1294' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23621f9a' cx='50' cy='100' r='50'/%3E%3Cg fill='%23682aa0' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%236f34a6' cx='50' cy='200' r='50'/%3E%3Cg fill='%23753eab' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%237c47b1' cx='50' cy='300' r='50'/%3E%3Cg fill='%238250b7' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%238959bd' cx='50' cy='400' r='50'/%3E%3Cg fill='%238f62c2' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23966bc8' cx='50' cy='500' r='50'/%3E%3Cg fill='%239c73ce' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a37cd3' cx='50' cy='600' r='50'/%3E%3Cg fill='%23aa85d9' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b08ede' cx='50' cy='700' r='50'/%3E%3Cg fill='%23b797e4' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23bea0e9' cx='50' cy='800' r='50'/%3E%3Cg fill='%23c5a9ef' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ccb2f4' cx='50' cy='900' r='50'/%3E%3Cg fill='%23d3bbfa' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23DAC4FF' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        margin: 1rem;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .container {
+        position: absolute;
+        overflow: hidden;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: $white;
+        border-radius: 10px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: $width;
+
+        .header {
+            padding: 1rem;
+            justify-content: center;
+            padding-top: 2rem;
+            display: flex;
+            .header_img {
+                width: 350px;
+                user-select: none;
+            }
+        }
+        .body {
+            width: 100%;
+            padding: 0rem 1rem 1rem 1rem;
+            .divider {
+                display: flex;
+                margin-top: 1rem;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                .line {
+                    border-top: 1px solid $grey-lighter;
+                    width: 100%;
+                    height: 1px;
+                }
+            }
+            .option_type_wrapper {
+                .option_type {
+                    padding: 1rem;
+                    background-color: $grey-lightest;
+                    transition: background-color 0.3s ease;
+                    cursor: pointer;
+                    border-radius: $radius-large;
+                    margin: 1rem 0;
+                    font-weight: 600;
+                    &.is_active {
+                        background-color: $primary-light !important;
+                        color: $black;
+                        outline: 1px solid $primary;
+                    }
+                    &:hover {
+                        background-color: $grey-lighter;
+                        color: $grey-darker;
+                    }
+                }
+            }
+        }
+
+        .bar {
+            position: absolute;
+            content: " ";
+            top: 0;
+            margin: 1rem;
+            background-color: $grey-lightest;
+            height: 15px;
+            width: 60px;
+            border-radius: 15px;
+        }
+        @include mobile {
+            width: initial;
+            position: relative;
+            transform: none;
+            top: initial;
+            left: initial;
+        }
+    }
+}
+
+.phase2 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    height: 100%;
+    min-width: 500px;
+}

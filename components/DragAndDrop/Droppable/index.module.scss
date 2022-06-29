@@ -1,0 +1,10 @@
+@import "/styles/utilities/derived-variables.sass";
+.wrapper {
+    composes: column from global;
+    .container {
+        background-color: $grey-lightest;
+        border-radius: $radius-large;
+        padding: 1rem 0.75rem 0 0.75rem;
+        height: 100%;
+    }
+}

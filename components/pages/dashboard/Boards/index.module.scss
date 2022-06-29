@@ -1,0 +1,121 @@
+@import "/styles/utilities/derived-variables.sass";
+@import "/styles/elements/tag.sass";
+.add_task {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.container {
+    composes: columns from global;
+}
+.card_container {
+    position: relative;
+    margin-bottom: 0.75rem;
+    .card {
+        padding: 1rem 0.75rem;
+        // font-size: $size-5;
+        border-radius: $radius-large;
+        transition: box-shadow $common-transition, transform $common-transition;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+        &.LOW {
+            background-color: $success-light;
+            border: 1px solid $success;
+            .menu_icon {
+                color: $success-dark;
+            }
+        }
+        &.MEDIUM {
+            background-color: $warning-light;
+            border: 1px solid $warning;
+            .menu_icon {
+                color: $warning-dark;
+            }
+        }
+        &.HIGH {
+            background-color: $danger-light;
+            border: 1px solid $danger;
+            .menu_icon {
+                color: $danger-dark;
+            }
+        }
+
+        .menu_icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            margin: 0 0.3rem;
+            color: $grey;
+            opacity: 0;
+            transition: opacity $common-transition;
+        }
+        &:hover {
+            .menu_icon {
+                opacity: 1;
+            }
+            box-shadow: 3px 3px 0 $grey-light;
+            transform: translate(-3px, -3px);
+
+            &.LOW {
+                box-shadow: 3px 3px 0 $success;
+            }
+            &.MEDIUM {
+                box-shadow: 3px 3px 0 $warning;
+            }
+            &.HIGH {
+                box-shadow: 3px 3px 0 $danger;
+            }
+        }
+
+        &:active {
+            box-shadow: initial !important;
+            transform: initial;
+        }
+    }
+}
+
+.deadline {
+    text-align: right;
+    font-weight: $weight-bold;
+    font-size: 0.7rem;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: $radius-large;
+    background-color: white;
+
+    transform: translateX(80%);
+    z-index: 100;
+    overflow: hidden;
+    box-shadow: 9px 9px 34px #b5b5b5, -9px -9px 34px #ffffff;
+    .item {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        transition: background-color $common-transition;
+        font-weight: $weight-medium;
+        &:hover {
+            background-color: darken(white, 10%);
+        }
+    }
+}
+
+.delete_hover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem 1.5rem;
+    color: $danger;
+    background-color: $danger-light;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $radius-rounded;
+    padding: 0.5rem;
+}

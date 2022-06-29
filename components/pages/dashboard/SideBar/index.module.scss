@@ -1,0 +1,28 @@
+@import "/styles/utilities/derived-variables.sass";
+.container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $grey-lightest;
+    padding: 1rem;
+    justify-content: space-between;
+
+    .item {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        font-weight: $weight-bold;
+        border-radius: $radius-large;
+        margin-bottom: 0.5rem;
+        transition: background-color $common-transition, color $common-transition;
+        &:hover {
+            background-color: $grey-lighter;
+            cursor: pointer;
+        }
+        &[data-active="true"] {
+            background-color: $grey-dark;
+            color: $grey-lightest;
+        }
+    }
+}

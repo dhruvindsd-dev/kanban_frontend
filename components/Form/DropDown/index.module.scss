@@ -1,0 +1,33 @@
+@import "/styles/utilities/derived-variables.sass";
+.wrapper {
+    z-index: 1000;
+    background-color: $white;
+    box-shadow: $popup-box-shadow;
+    border-radius: $radius-large;
+    .body {
+        overflow: auto;
+        margin: 0 2.5px;
+        padding: 5px;
+        .item {
+            padding: 5px 10px;
+            margin: 2px 0;
+            display: flex;
+            align-items: center;
+            border-radius: $radius;
+            cursor: pointer;
+            &:hover {
+                background-color: lighten($grey-lightest, 2%);
+            }
+            &[data-selected="true"] {
+                background-color: $primary;
+                color: $primary-invert;
+            }
+            &:first-child {
+                margin-top: 0 !important;
+            }
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+}

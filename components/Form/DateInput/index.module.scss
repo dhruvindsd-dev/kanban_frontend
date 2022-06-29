@@ -1,0 +1,93 @@
+@import "../Input/index.module.scss";
+@import "/styles/utilities/derived-variables.sass";
+
+$general-padding: 0 10px;
+.calendar_wrapper {
+    background-color: $white;
+    z-index: 100;
+    padding: 10px 0 0 0;
+    box-shadow: $popup-box-shadow;
+    max-width: calc(100vw - 24px); // notion values
+    // min-width: 330px;
+    // width: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: $radius-large;
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $general-padding;
+        margin-bottom: 0.25rem;
+        button {
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+    }
+    .dates_wrapper {
+        padding: $general-padding;
+
+        .date_item {
+            height: 32px;
+            width: 32px;
+            display: flex;
+            margin: 0.25rem;
+            border-radius: $radius-large;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            font-size: $size-7;
+            &.today {
+                border: 1px solid $danger;
+                background-color: $danger-light;
+                border-radius: $radius-rounded;
+                font-weight: $weight-bold;
+            }
+            &.selected {
+                background-color: darken($primary, 10%) !important;
+                font-weight: $weight-medium !important;
+                color: $white !important;
+            }
+            &.outside_month {
+                opacity: 0.4;
+            }
+            &:hover {
+                background-color: lighten($primary, 20%);
+                font-weight: $weight-medium !important;
+            }
+        }
+        .is_weekday {
+            opacity: 0.4;
+            &:hover {
+                background-color: initial;
+                cursor: initial;
+            }
+        }
+        .weekdays {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .calendar_option {
+        padding: 0.75rem;
+        border-top: 1px solid $grey-lighter;
+        font-size: $size-7;
+        color: $grey-dark;
+        font-weight: $weight-medium;
+        svg {
+            fill: $grey;
+        }
+        display: flex;
+        // justify-content: center;
+        cursor: pointer;
+        align-items: center;
+        &:hover {
+            background-color: lighten($grey-lightest, 2%);
+        }
+        &:last-child {
+            border-radius: 0 0 $radius-large $radius-large;
+        }
+    }
+}
