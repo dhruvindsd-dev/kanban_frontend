@@ -1,3 +1,4 @@
+@import "/styles/utilities/mixins.sass";
 .container {
     display: flex;
     height: 100vh;
@@ -10,5 +11,13 @@
         width: 100%;
         padding: 2rem;
         overflow: auto;
+    }
+    @include touch {
+        .left_col {
+            width: 0;
+        }
+        .right_col {
+            width: 100%;
+        }
     }
 }

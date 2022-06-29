@@ -39,7 +39,8 @@ const Todo = ({
 						<div className={styles.no_items}>
 							<div className="is-size-3">＼(^_^ )</div>
 							<br />
-							No item's found, click the button in the top right to add some
+							No item&apos;s found, click the button in the top right to add
+							some
 						</div>
 					)}
 					{data.map((item, i: number) => (

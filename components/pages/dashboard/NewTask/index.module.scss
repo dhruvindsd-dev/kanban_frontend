@@ -1,4 +1,5 @@
 @import "/styles/utilities/derived-variables.sass";
+@import "/styles/utilities/mixins.sass";
 .overlay,
 .wrapper {
     position: fixed;
@@ -25,5 +26,10 @@
         margin: 1rem;
         color: $grey;
         cursor: pointer;
+    }
+    @include touch {
+        width: 100%;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
     }
 }

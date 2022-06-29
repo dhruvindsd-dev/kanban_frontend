@@ -47,7 +47,7 @@ const Card = ({
 								<motion.div
 									initial={{
 										opacity: 0,
-										x: "80%",
+										x: "10%",
 										scale: 0.5,
 										transformOrigin: "top left",
 									}}

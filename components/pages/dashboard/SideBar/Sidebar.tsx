@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { BsKanban } from "react-icons/bs";
-import { FiSettings } from "react-icons/fi";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import Logo from "../../../Logo/Logo";
 import styles from "./index.module.scss";
@@ -12,7 +11,9 @@ interface sideBarProps {
 export default function Sidebar({ tab }: sideBarProps) {
 	return (
 		<div className={styles.container}>
-			<Logo isDark />
+			<div className="is-hidden-touch">
+				<Logo isDark />
+			</div>
 			<div className={styles.mid}>
 				<Item
 					tab={tab}
@@ -21,9 +22,7 @@ export default function Sidebar({ tab }: sideBarProps) {
 				/>
 				<Item tab={tab} icon={<BsKanban size={28} />} text="boards" />
 			</div>
-			<div>
-				<Item tab={tab} icon={<FiSettings size={28} />} text="settings" />
-			</div>
+			<span />
 		</div>
 	);
 }

@@ -1,9 +1,14 @@
 @import "/styles/utilities/derived-variables.sass";
+@import "/styles/utilities/mixins.sass";
 @import "/styles/elements/tag.sass";
 .add_task {
     padding: 3rem 0;
     display: flex;
     justify-content: flex-end;
+    @include touch {
+        justify-content: center;
+        padding: 2rem 0;
+    }
 }
 .container {
     composes: columns from global;
@@ -13,7 +18,6 @@
     margin-bottom: 0.75rem;
     .card {
         padding: 1rem 0.75rem;
-        // font-size: $size-5;
         border-radius: $radius-large;
         transition: box-shadow $common-transition, transform $common-transition;
         cursor: pointer;
@@ -73,6 +77,11 @@
             box-shadow: initial !important;
             transform: initial;
         }
+        @include touch {
+            .menu_icon {
+                opacity: 1 !important;
+            }
+        }
     }
 }
 
@@ -89,7 +98,7 @@
     border-radius: $radius-large;
     background-color: white;
 
-    transform: translateX(80%);
+    transform: translateX(-80%);
     z-index: 100;
     overflow: hidden;
     box-shadow: 9px 9px 34px #b5b5b5, -9px -9px 34px #ffffff;
