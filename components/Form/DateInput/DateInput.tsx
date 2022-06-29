@@ -1,4 +1,5 @@
 // import { parseISO } from "date-fns";
+
 import { set } from "date-fns";
 import format from "date-fns/format";
 import { useDayzed } from "dayzed";
@@ -89,7 +90,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
 			}
 		);
 		useEffect(() => {
-			setValue(name, selectedDate?.toISOString());
+			setValue(name, format(selectedDate as Date, "d-M-yyyy"));
 		}, [selectedDate]);
 
 		return (

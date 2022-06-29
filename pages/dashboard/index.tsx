@@ -12,7 +12,6 @@ import styles from "./index.module.scss";
 
 export default function Dashboard() {
 	const router = useRouter();
-
 	const [data, isLoading, setData] = useFetchWithCache<any[]>(
 		"/todo/kanban",
 		{},
@@ -23,24 +22,21 @@ export default function Dashboard() {
 			AXIOS_INSTANCE.get("/todo/kanban");
 		}, 100);
 	}, []);
-
 	const token = useSelector((state) => state.auth.token);
-	console.log("token", token);
-
-	if (isLoading) return <Loader fullScreen />;
 
 	if (IS_CLIENT && !token) router.push("/login");
 
 	const tab = router.query!.tab;
 	if (!tab && IS_CLIENT && router.isReady) router.push("?tab=tasks");
+
 	let view;
 	if (tab === "dashboard") view = <Tasks data={data} setData={setData} />;
 	else if (tab === "boards") view = <Boards data={data} setData={setData} />;
-	else if (router.isReady) view = <Tasks data={data} setData={setData} />;
+	else if (router.isReady) view = null;
 
-	// create global redux store
 	//
 
+	if (isLoading) return <Loader fullScreen />;
 	return (
 		<div className={styles.container}>
 			<div className={styles.left_col}>

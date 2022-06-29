@@ -40,6 +40,8 @@ const NewTask = ({
 		element?.priority ?? "LOW"
 	);
 	const sendToServer = handleSubmit((formData, event) => {
+		console.log("date", formData.deadLine);
+
 		let url = "/todo/new";
 		if (isEdit) url = "/todo/edit";
 		// return;
