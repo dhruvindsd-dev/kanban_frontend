@@ -1,3 +1,8 @@
+import { useEffect } from "react";
+
 export default function Index() {
-	return <div className="section">Index</div>;
+	useEffect(() => {
+		window.location.href = "/register";
+	});
+	return <div></div>;
 }

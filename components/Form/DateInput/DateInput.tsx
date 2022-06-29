@@ -11,7 +11,12 @@ import React, {
 	useState,
 } from "react";
 import ClickAwayListener from "react-click-away-listener";
-import { FieldError, UseFormSetValue } from "react-hook-form";
+import {
+	FieldError,
+	UseFormClearErrors,
+	UseFormSetError,
+	UseFormSetValue,
+} from "react-hook-form";
 import { BiErrorCircle } from "react-icons/bi";
 import { usePopper } from "react-popper";
 import DropDown from "../DropDown/DropDown";
@@ -52,6 +57,8 @@ interface DateInputProps {
 	value?: string;
 	disableTopMargin?: boolean;
 	setValue: UseFormSetValue<any>;
+	setError: UseFormSetError<any>;
+	clearError: UseFormClearErrors<any>;
 }
 
 const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
@@ -63,6 +70,8 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
 			name,
 			icon,
 			setValue,
+			setError,
+			clearError,
 			value = undefined,
 			type = "text",
 			defaultValue = "",
@@ -126,6 +135,8 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
 								style={{ ...popperStyles.popper, zIndex: 100 }}
 								ref={setPopperElement}>
 								<Datepicker
+									prevDateErr={setError.bind(this, name)}
+									clearErr={clearError.bind(this, name)}
 									close={setHasFocus.bind(this, false)}
 									selectedDate={selectedDate}
 									setSelectedDate={setSelectedDate}
@@ -150,9 +161,17 @@ export default DateInput;
 interface DatepickerProps {
 	close: () => void;
 	selectedDate: Date | undefined;
+	prevDateErr: (val: any) => void;
+	clearErr: () => void;
 	setSelectedDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
 }
-function Datepicker({ selectedDate, setSelectedDate, close }: DatepickerProps) {
+function Datepicker({
+	selectedDate,
+	setSelectedDate,
+	close,
+	prevDateErr,
+	clearErr,
+}: DatepickerProps) {
 	const [initialDate, setInitialDate] = useState(selectedDate ?? new Date());
 	const [offset, setOffset] = useState(0);
 	let { calendars, getDateProps } = useDayzed({
@@ -160,8 +179,13 @@ function Datepicker({ selectedDate, setSelectedDate, close }: DatepickerProps) {
 		date: initialDate,
 		selected: selectedDate,
 		onDateSelected: (date, event) => {
-			if (date.nextMonth || date.prevMonth) setInitialDate(date.date);
+			if (date.date < new Date()) {
+				prevDateErr({ message: "please select a date in future" });
+				close();
+				return;
+			}
 			setSelectedDate(date.date);
+			clearErr();
 			close();
 		},
 		offset,

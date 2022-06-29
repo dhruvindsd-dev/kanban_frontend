@@ -21,9 +21,9 @@ const Loader = ({
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 			transition={{ duration: 0.3, delay }}
-			className={`${!!fullScreen ? styles.wrapper : undefined} ${
-				isOverlay ? styles.overlay : ""
-			}`}>
+			className={` ${styles.container}  ${
+				!!fullScreen ? styles.full_screen : ""
+			} ${isOverlay ? styles.overlay : ""}`}>
 			<div className={`${className}  ${styles.loader} `}></div>
 		</motion.div>
 	);

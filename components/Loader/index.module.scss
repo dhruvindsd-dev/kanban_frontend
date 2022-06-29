@@ -1,5 +1,9 @@
 @import "/styles/utilities/derived-variables.sass";
-.wrapper {
+.container {
+    display: flex;
+    justify-content: center;
+}
+.full_screen {
     height: 100vh;
     display: flex;
     justify-content: center;

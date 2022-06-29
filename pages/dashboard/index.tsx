@@ -1,14 +1,22 @@
 import { AnimatePresence, motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader";
-import Boards from "../../components/pages/dashboard/Boards/Boards";
 import Sidebar from "../../components/pages/dashboard/SideBar/Sidebar";
-import Tasks from "../../components/pages/dashboard/Tasks/Tasks";
-import { AXIOS_INSTANCE, IS_CLIENT } from "../../constants";
+import { IS_CLIENT } from "../../constants";
 import useFetchWithCache from "../../hooks/useFetchWithCache";
 import styles from "./index.module.scss";
+
+const LazyTasks = dynamic(
+	() => import("../../components/pages/dashboard/Tasks/Tasks"),
+	{ loading: () => <Loader /> }
+);
+
+const LazyBoards = dynamic(
+	() => import("../../components/pages/dashboard/Boards/Boards"),
+	{ loading: () => <Loader className="" /> }
+);
 
 export default function Dashboard() {
 	const router = useRouter();
@@ -17,11 +25,6 @@ export default function Dashboard() {
 		{},
 		[]
 	);
-	useEffect(() => {
-		setTimeout(() => {
-			AXIOS_INSTANCE.get("/todo/kanban");
-		}, 100);
-	}, []);
 	const token = useSelector((state) => state.auth.token);
 
 	if (IS_CLIENT && !token) router.push("/login");
@@ -30,8 +33,9 @@ export default function Dashboard() {
 	if (!tab && IS_CLIENT && router.isReady) router.push("?tab=tasks");
 
 	let view;
-	if (tab === "dashboard") view = <Tasks data={data} setData={setData} />;
-	else if (tab === "boards") view = <Boards data={data} setData={setData} />;
+	if (tab === "dashboard") view = <LazyTasks data={data} setData={setData} />;
+	else if (tab === "boards")
+		view = <LazyBoards data={data} setData={setData} />;
 	else if (router.isReady) view = null;
 
 	//

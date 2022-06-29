@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import {
 	BACKLOG_ID,
@@ -13,6 +14,7 @@ interface TasksProps {
 }
 export default function Tasks({ data, setData }: TasksProps) {
 	const firstName = useSelector((state) => state.auth.firstName);
+	const router = useRouter();
 
 	const totalTasks =
 		data[BACKLOG_ID].length +
@@ -33,13 +35,17 @@ export default function Tasks({ data, setData }: TasksProps) {
 			<div className={styles.box_wrapper}>
 				<div className="columns ">
 					<div className="column">
-						<div className={`${styles.box} ${styles.success}`}>
+						<div
+							onClick={() => router.push("?tab=boards")}
+							className={`${styles.box} ${styles.success}`}>
 							Completed {data[DONE_ID].length}
 						</div>
 					</div>
 
 					<div className="column">
-						<div className={`${styles.box} ${styles.danger}`}>
+						<div
+							onClick={() => router.push("?tab=boards")}
+							className={`${styles.box} ${styles.danger}`}>
 							Pending {totalTasks - data[DONE_ID].length}
 						</div>
 					</div>

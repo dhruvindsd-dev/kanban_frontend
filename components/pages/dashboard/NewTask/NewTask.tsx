@@ -34,6 +34,8 @@ const NewTask = ({
 		setValue,
 		watch,
 		reset,
+		setError,
+		clearErrors,
 		formState: { errors, isSubmitting },
 	} = useForm<formValues>();
 	const [priority, setPriority] = useState<"LOW" | "MEDIUM" | "HIGH">(
@@ -95,6 +97,8 @@ const NewTask = ({
 
 				<br />
 				<DateInput
+					clearError={clearErrors}
+					setError={setError}
 					defaultValue={element?.deadline}
 					value={watch("deadLine")}
 					icon={
